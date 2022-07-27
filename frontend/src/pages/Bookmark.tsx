@@ -1,7 +1,7 @@
 import { SentimentVeryDissatisfied } from "@mui/icons-material";
 import { Box, Button, Card, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { AppProps } from "../AppProps";
 import DisplayCard from "../components/DisplayCard";
 
@@ -9,20 +9,15 @@ interface Props {
     data: AppProps["arrayData"];
     handleBookmark: (date: string) => void;
     bookmarks: (string | null)[];
-    setBookmarks: React.Dispatch<React.SetStateAction<(string | null)[]>>
+    deleteBookmark: (date: string | undefined) => void;
 }
 
-const Bookmark: React.FC<Props> = ({ data, handleBookmark, bookmarks, setBookmarks }) => {
+const Bookmark: React.FC<Props> = ({ data, handleBookmark, bookmarks, deleteBookmark }) => {
     const params = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const bookmarkData = data?.filter(d => d?.date === params.date)[0];
 
-    const deleteBookmark = () => {
-        setBookmarks(bookmarks.filter((b) => b !== params.date));
-        navigate("/");
-    };
-    
     return (
         <Box sx={{
             display: "flex",
@@ -38,7 +33,7 @@ const Bookmark: React.FC<Props> = ({ data, handleBookmark, bookmarks, setBookmar
                             <Typography sx={{ fontSize: "2em" }}>Data no longer available.</Typography>
                             <Typography sx={{ fontSize: "2em" }}>Delete bookmark?</Typography>
                         </Box>
-                        <Button variant="contained" size="large" sx={{ margin: "1em" }} onClick={deleteBookmark}>Delete</Button>
+                        <Button variant="contained" size="large" sx={{ margin: "1em" }} onClick={() => deleteBookmark(params.date)}>Delete</Button>
                     </Card>
                     
             }

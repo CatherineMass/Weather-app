@@ -56,6 +56,12 @@ const App = () => {
         localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     }, [bookmarks]);
 
+    const deleteBookmark = (date: string | undefined) => {
+        setBookmarks(bookmarks.filter((b) => b !== date));
+        navigate("/");
+        setCurrentIndex(0);
+    };
+
     // Home icon reset
     const homeReset = () => {
         navigate("/");
@@ -71,7 +77,7 @@ const App = () => {
                         <Home handleBookmark={handleBookmark} bookmarks={bookmarks} data={data} currentIndex={currentIndex} currentData={currentData} handleNext={handleNext} handlePrevious={handlePrevious} />
                     }
                 />
-                <Route path=":date" element={<Bookmark data={data} handleBookmark={handleBookmark} bookmarks={bookmarks} setBookmarks={setBookmarks} />} />
+                <Route path=":date" element={<Bookmark data={data} handleBookmark={handleBookmark} bookmarks={bookmarks} deleteBookmark={deleteBookmark} />} />
             </Route>
         </Routes>
     );
