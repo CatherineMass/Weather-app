@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node-fetch": "^2.6.2",
+    "@types/pg": "^8.6.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.3",
+    "knex": "^2.2.0",
+    "node-fetch": "^2.6.7",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3",
+    "ts-node-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "@types/nodemon": "^1.19.2",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "dev": "nodemon --watch './**/*.ts' --exec ts-node ./src/server.ts",
+    "lint": "eslint . --ext .ts --fix"
+  }
+}
