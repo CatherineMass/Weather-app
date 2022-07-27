@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 export const asyncWrapper = (
-    fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
+    fn: (req: Request, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>
 ) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
