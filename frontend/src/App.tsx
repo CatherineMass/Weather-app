@@ -13,16 +13,24 @@ const App = () => {
     const currentData = data[currentIndex];
 
     const getData = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            credentials: "include",
-        });
-        const sentData = await response.json();
-        setData(sentData.data);
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                credentials: "include",
+            });
+            const sentData = await response.json();
+
+            if (response.status !== 200) {
+                console.error(sentData);
+            }
+            setData(sentData.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     useEffect(() => {
