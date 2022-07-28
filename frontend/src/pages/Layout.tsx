@@ -41,7 +41,7 @@ const Layout: React.FC<Props> = ({ bookmarks, homeReset }) => {
                     <ListItem key={b}>
                         <ListItemButton onClick={() => navigate(`/${b}`)}>
                             <ListItemIcon>
-                                <Bookmark />
+                                <Bookmark sx={{ color: "#ff9800" }} />
                             </ListItemIcon>
                             <ListItemText
                                 primary={`${new Intl.DateTimeFormat("en-US", {

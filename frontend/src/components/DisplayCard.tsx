@@ -11,11 +11,12 @@ import {
     Paper,
     IconButton,
 } from "@mui/material";
-import { lightBlue } from "@mui/material/colors";
+import { amber, lime, orange } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import WeatherIcon from "./WeatherIcon";
 import { AppProps } from "../AppProps";
 import { Bookmark, BookmarkBorder } from "@mui/icons-material";
+import { useParams } from "react-router";
 
 interface Props {
     data: AppProps["data"];
@@ -24,9 +25,14 @@ interface Props {
 }
 
 const DisplayCard: React.FC<Props> = ({ data, handleBookmark, bookmarks }) => {
+    const params = useParams();
+
     const StyledTableRow = styled(TableRow)(() => ({
         "&:nth-of-type(odd)": {
-            backgroundColor: lightBlue[50],
+            backgroundColor: params.date ? orange[100] : amber[100],
+        },
+        "&:nth-of-type(even)": {
+            backgroundColor: params.date ? orange[50] : amber[50],
         },
         "&:last-child td, &:last-child th": {
             border: 0,
@@ -110,8 +116,8 @@ const DisplayCard: React.FC<Props> = ({ data, handleBookmark, bookmarks }) => {
                 <IconButton onClick={() => handleBookmark(data?.date)}>
                     {
                         bookmarks.includes(data.date) ?
-                            <Bookmark sx={{fontSize: "60px"}} /> :
-                            <BookmarkBorder sx={{fontSize: "60px"}} />
+                            <Bookmark sx={{fontSize: "60px", color: "#ffa726"}} /> :
+                            <BookmarkBorder sx={{fontSize: "60px", color: "#ffa726"}} />
                     }
                     
                 </IconButton>
