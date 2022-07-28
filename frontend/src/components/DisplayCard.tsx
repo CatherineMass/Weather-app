@@ -41,11 +41,9 @@ const DisplayCard: React.FC<Props> = ({ data, handleBookmark, bookmarks }) => {
 
     // Date
     const getDate = () => {
-        const date = data?.date.split("T")[0].split("-")[2];
-        const d = new Date();
-        // const day = d.getDate();
-        const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(d);
-        return `${month} ${date}`;
+        const d = new Date(data?.date.slice(0, data.date.length - 1));
+        const date = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric" }).format(d);
+        return `${date}`;
     };
 
     // Weather Symbol
